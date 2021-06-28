@@ -17,6 +17,7 @@ import Igraci from "./components/Igraci/Igraci";
 import Add from "./components/Igraci/Add";
 import Transfer from "./components/Igraci/Transfer";
 import EditPlayer from "./components/Igraci/Edit";
+import Klubovi from "./components/Igraci/Klubovi";
 
 class App extends React.Component {
   render() {
@@ -36,6 +37,9 @@ class App extends React.Component {
                 <Nav.Link as={Link} to="/igraci">
                   Igraci
                 </Nav.Link>
+                <Nav.Link as={Link} to="/klubovi">
+                  Klubovi
+                </Nav.Link>
               </Nav>
 
               {window.localStorage["jwt"] ? (
@@ -49,6 +53,7 @@ class App extends React.Component {
             <Container style={{ marginTop: 25 }}>
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/klubovi" component={Klubovi} />
                 <Route exact path="/igraci" component={Igraci} />
                 <Route exact path="/igraci/add" component={Add} />
                 <Route exact path="/igraci/:id" component={EditPlayer} />

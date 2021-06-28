@@ -14,8 +14,8 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>zavrsni-back</groupId>
-	<artifactId>zavrsni-back</artifactId>
+	<groupId>transfers-back</groupId>
+	<artifactId>transfers-back</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<!-- lookup parent from repository -->
 	<!-- jar je predefinisana vrednost, ako se želi postavit war vrednost onda 
