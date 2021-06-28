@@ -17,7 +17,8 @@ import Igraci from "./components/Igraci/Igraci";
 import Add from "./components/Igraci/Add";
 import Transfer from "./components/Igraci/Transfer";
 import EditPlayer from "./components/Igraci/Edit";
-import Klubovi from "./components/Igraci/Klubovi";
+import Klubovi from "./components/Klubovi/Klubovi";
+import Details from "./components/Klubovi/Details";
 
 class App extends React.Component {
   render() {
@@ -54,6 +55,7 @@ class App extends React.Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/klubovi" component={Klubovi} />
+                <Route exact path="/klubovi/:id" component={Details} />
                 <Route exact path="/igraci" component={Igraci} />
                 <Route exact path="/igraci/add" component={Add} />
                 <Route exact path="/igraci/:id" component={EditPlayer} />

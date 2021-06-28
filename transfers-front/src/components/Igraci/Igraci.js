@@ -74,6 +74,10 @@ class Igraci extends React.Component {
     this.props.history.push("/igraci/" + igracId);
   }
 
+  // goToKlub(event) {
+  //   this.props.history.push("/klubovi/" + klubId);
+  // }
+
   searchValueInputChange(event) {
     let control = event.target;
 

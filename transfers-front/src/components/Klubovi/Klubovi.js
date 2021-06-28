@@ -1,5 +1,5 @@
 import React from "react";
-import FrontAxios from "./../../apis/FrontAxios";
+import FrontAxios from "../../apis/FrontAxios";
 import { Form, Button, Table, Collapse, ButtonGroup } from "react-bootstrap";
 
 class Klubovi extends React.Component {

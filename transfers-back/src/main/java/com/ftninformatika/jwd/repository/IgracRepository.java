@@ -1,5 +1,7 @@
 package com.ftninformatika.jwd.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +15,8 @@ import com.ftninformatika.jwd.model.Igrac;
 public interface IgracRepository extends JpaRepository<Igrac, Long>{
 	
 	Igrac findOneById (Long id);
+	
+	List <Igrac> findByKlubId (Long id);
 	
 	Page <Igrac> findAll (Pageable pageable);
 	
