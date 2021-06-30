@@ -16,15 +16,22 @@ class Klubovi extends React.Component {
   }
 
   componentDidMount() {
-    this.getKlubovi();
+    this.getKlubovi(0);
   }
 
-  getKlubovi() {
-    FrontAxios.get("/klubovi")
+  getKlubovi(pageNo) {
+    let config = {
+      params: {
+        pageNo: pageNo,
+      },
+    };
+    FrontAxios.get("/klubovi", config)
       .then((res) => {
         console.log(res);
         this.setState({
           klubovi: res.data,
+          totalPages: res.headers["total-pages"],
+          pageNo: pageNo,
         });
       })
       .catch((error) => {
@@ -63,6 +70,11 @@ class Klubovi extends React.Component {
         <tr key={klub.id}>
           <td>{klub.naziv}</td>
           <td>{klub.budzet} $</td>
+          <td>
+            <Button size="sm" onClick={() => this.goToDetails(klub.id)}>
+              Igraci
+            </Button>
+          </td>
         </tr>
       );
     });
@@ -72,11 +84,28 @@ class Klubovi extends React.Component {
     return (
       <div>
         <h1>Klubovi</h1>
-        <Table bordered striped style={{ marginTop: 5 }}>
+        <ButtonGroup style={{ marginTop: 25, float: "right" }}>
+          <Button
+            style={{ margin: 3, width: 90 }}
+            disabled={this.state.pageNo == 0}
+            onClick={() => this.getKlubovi(this.state.pageNo - 1)}
+          >
+            Previous
+          </Button>
+          <Button
+            style={{ margin: 3, width: 90 }}
+            disabled={this.state.pageNo == this.state.totalPages - 1}
+            onClick={() => this.getKlubovi(this.state.pageNo + 1)}
+          >
+            Next
+          </Button>
+        </ButtonGroup>
+        <Table striped bordered hover variant="dark">
           <thead className="thead-dark">
             <tr>
               <th>Ime kluba</th>
               <th>Budzet kluba</th>
+              <th>Igraci</th>
             </tr>
           </thead>
           <tbody>{this.renderKlubovi()}</tbody>

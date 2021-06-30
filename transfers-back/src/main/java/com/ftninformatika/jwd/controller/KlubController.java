@@ -5,12 +5,15 @@ import java.util.List;
 import javax.validation.constraints.Positive;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ftninformatika.jwd.model.Igrac;
@@ -41,12 +44,15 @@ public class KlubController {
 	
 	
 	@GetMapping
-    public ResponseEntity<List<KlubDTO>> getAll(){
+    public ResponseEntity<List<KlubDTO>> getAll(@RequestParam(value = "pageNo", defaultValue = "0") int pageNo){
 
-    	List<Klub> klubovi = klubService.findAll();
+    	Page <Klub> klubovi = klubService.findAll(pageNo);
+    	
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Total-Pages", Integer.toString(klubovi.getTotalPages()));
 
 
-        return new ResponseEntity<>(toDto.convert(klubovi), HttpStatus.OK);
+        return new ResponseEntity<>(toDto.convert(klubovi.getContent()), headers, HttpStatus.OK);
     }
 	
     @GetMapping("/{id}")

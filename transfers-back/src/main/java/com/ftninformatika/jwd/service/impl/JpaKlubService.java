@@ -3,6 +3,8 @@ package com.ftninformatika.jwd.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.ftninformatika.jwd.model.Klub;
@@ -27,8 +29,12 @@ public class JpaKlubService implements KlubService{
 
 	@Override
 	public Klub save(Klub klub) {
-		// TODO Auto-generated method stub
 		return repo.save(klub);
+	}
+
+	@Override
+	public Page<Klub> findAll(int pageNo) {
+		return repo.findAll(PageRequest.of(pageNo, 5));
 	}
 
 }

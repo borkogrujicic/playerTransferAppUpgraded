@@ -113,7 +113,7 @@ class Igraci extends React.Component {
                 </td>,
                 <td>
                   <Button
-                    variant="danger"
+                    variant="outline-primary"
                     onClick={() => this.goToEdit(igrac.id)}
                   >
                     Edit
