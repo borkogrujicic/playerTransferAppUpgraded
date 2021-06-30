@@ -30,7 +30,7 @@ class Add extends React.Component {
       console.log("test1");
     } catch (error) {
       console.log(error);
-      alert("Couldn't fetch movies");
+      alert("Couldn't fetch clubs");
     }
   }
 
