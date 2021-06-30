@@ -82,13 +82,13 @@ class EditPlayer extends React.Component {
     this.setState({ igrac: igrac });
   }
 
-  mestoSelectionChanged(e) {
+  klubSelectionChanged(e) {
     // console.log(e);
 
     let klubId = e.target.value;
     let klub = this.state.klubovi.find((klub) => klub.id == klubId);
 
-    let igrac = this.state.festival;
+    let igrac = this.state.igrac;
     igrac.klub = klub;
 
     this.setState({ igrac: igrac });
@@ -101,6 +101,18 @@ class EditPlayer extends React.Component {
 
     this.setState({ igrac: igrac });
   }
+
+  handleInputChange(e) {
+    
+    const checked = e.target.checked
+    let igrac = this.state.igrac;
+
+    (checked) ? igrac.naProdaju = true : igrac.naProdaju = false;
+    this.setState({igrac: igrac})
+
+  }
+
+
 
 
 
@@ -151,7 +163,7 @@ class EditPlayer extends React.Component {
                         id="pBrojDresa"
                         name="brojDresa"
                         value={this.state.igrac.brojDresa}
-                        onChange={(e) => this.valueInputChange(e)}
+                        onClick={(e) => this.valueInputChange(e)}
                       />{" "}
                       <br />
                     </Form.Group>
@@ -174,7 +186,7 @@ class EditPlayer extends React.Component {
                         label="Na prodaju"
                         name="naProdaju"
                         checked={this.state.igrac.naProdaju}
-                        onChange={this.handleInputChange} 
+                        onChange={(e) => this.handleInputChange(e)} 
                       />
                     </Form.Group>
 
